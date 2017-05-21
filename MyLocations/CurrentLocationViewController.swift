@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  CurrentLocationViewController.swift
 //  MyLocations
 //
 //  Created by Michael Antonelli on 21/05/2017.
@@ -8,7 +8,18 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class CurrentLocationViewController: UIViewController {
+    
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var tagButton: UIButton!
+    @IBOutlet weak var getButton: UIButton!
+    
+    @IBAction func getLocation() {
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
