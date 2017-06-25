@@ -8,6 +8,7 @@
 // update 
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,11 +16,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "DataModel")
+        container.loadPersistentStores(completionHandler: {
+            storeDescription, error in
+            if let error = error {
+                fatalError("Could load data store: \(error)")
+            }
+        })
+        return container
+    }()
+    
+    lazy var managedObjectContext: NSManagedObjectContext = self.persistentContainer.viewContext
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        print(applicationDocumentsDirectory)
+        
+        let tabBarController = window!.rootViewController as! UITabBarController
+        if let tabBarViewControllers = tabBarController.viewControllers {
+            let currentLocationViewController = tabBarViewControllers[0] as! CurrentLocationViewController
+            currentLocationViewController.ManagedObjectContext = managedObjectContext
+        }
+        listenForFatalCoreDataNotifications()
         return true
     }
 
+    func listenForFatalCoreDataNotifications() {
+        NotificationCenter.default.addObserver(forName: MyManagedObjectContextSaveDidFailNotification, object: nil, queue: OperationQueue.main, using: {
+            notification in
+            
+            let alert = UIAlertController(title: "Internal Error",
+                                          message: "There was a fatal error in the app and it cannot continue.\n\n"
+                                          + "Press OK to terminate the app. Sorry for the inconvenience.",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { _ in
+                let exception = NSException(name: NSExceptionName.internalInconsistencyException,
+                                            reason: "Fatal Core Data error",
+                                            userInfo: nil)
+                exception.raise()
+            }
+            alert.addAction(action)
+            
+            self.viewControllerForShowingAlert().present(alert, animated: true, completion: nil)
+        })
+    }
+    
+    func viewControllerForShowingAlert() -> UIViewController {
+        let rootViewController = self.window!.rootViewController!
+        if let presentedViewController = rootViewController.presentedViewController {
+            return presentedViewController
+        } else {
+            return rootViewController
+        }
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
