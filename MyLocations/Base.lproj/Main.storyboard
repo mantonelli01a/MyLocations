@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -304,7 +305,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h44-RC-5ET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2716.875" y="-320.07042253521126"/>
+            <point key="canvasLocation" x="3662" y="-320"/>
         </scene>
         <!--Category Picker View Controller-->
         <scene sceneID="vwH-9j-Ynw">
@@ -345,7 +346,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yDk-44-qeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bkn-XD-IyX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3752" y="-320"/>
+            <point key="canvasLocation" x="4534" y="-320"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -382,7 +383,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYZ-6h-zeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719" y="-320"/>
+            <point key="canvasLocation" x="2807" y="-320"/>
         </scene>
         <!--Locations-->
         <scene sceneID="HN4-C5-Lpj">
@@ -419,6 +420,10 @@
                                 <connections>
                                     <outlet property="addressLabel" destination="qW3-EO-WNI" id="KZ9-Xm-hyO"/>
                                     <outlet property="descriptionLabel" destination="Zmz-qF-HXM" id="7Xp-Dh-4Qn"/>
+                                    <segue destination="DTj-KV-Igu" kind="presentation" identifier="EditLocation" id="fbj-46-cFi">
+                                        <segue key="commit" inheritsFrom="parent" id="tG3-2j-xxG"/>
+                                        <segue key="preview" inheritsFrom="commit" id="sXb-N2-9U9"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -454,4 +459,7 @@
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fbj-46-cFi"/>
+    </inferredMetricsTieBreakers>
 </document>
