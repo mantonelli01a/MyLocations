@@ -20,6 +20,7 @@
 		84B8477D1EFFAF9000423FB9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84B8477B1EFFAF9000423FB9 /* DataModel.xcdatamodeld */; };
 		84B847801EFFB62E00423FB9 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8477E1EFFB62E00423FB9 /* Location+CoreDataClass.swift */; };
 		84B847811EFFB62E00423FB9 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8477F1EFFB62E00423FB9 /* Location+CoreDataProperties.swift */; };
+		84B847831EFFEC7B00423FB9 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B847821EFFEC7B00423FB9 /* LocationsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		84B8477C1EFFAF9000423FB9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		84B8477E1EFFB62E00423FB9 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		84B8477F1EFFB62E00423FB9 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		84B847821EFFEC7B00423FB9 /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				84B8477E1EFFB62E00423FB9 /* Location+CoreDataClass.swift */,
 				84B8477F1EFFB62E00423FB9 /* Location+CoreDataProperties.swift */,
 				846073121EE48309007EBAC4 /* LocationDetailsViewController.swift */,
+				84B847821EFFEC7B00423FB9 /* LocationsViewController.swift */,
 				493C18831ED2146800F71B60 /* Main.storyboard */,
 				493C18811ED2146800F71B60 /* SecondViewController.swift */,
 			);
@@ -165,6 +168,7 @@
 				84B8477D1EFFAF9000423FB9 /* DataModel.xcdatamodeld in Sources */,
 				493C18821ED2146800F71B60 /* SecondViewController.swift in Sources */,
 				8421120A1EEBE6B400623777 /* HudView.swift in Sources */,
+				84B847831EFFEC7B00423FB9 /* LocationsViewController.swift in Sources */,
 				84B847811EFFB62E00423FB9 /* Location+CoreDataProperties.swift in Sources */,
 				8421120C1EEC05EA00623777 /* Functions.swift in Sources */,
 				493C187E1ED2146800F71B60 /* AppDelegate.swift in Sources */,
