@@ -17,6 +17,8 @@
 		8421120A1EEBE6B400623777 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842112091EEBE6B400623777 /* HudView.swift */; };
 		8421120C1EEC05EA00623777 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421120B1EEC05EA00623777 /* Functions.swift */; };
 		846073131EE48309007EBAC4 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846073121EE48309007EBAC4 /* LocationDetailsViewController.swift */; };
+		8478B6791F02D68E007EBEF9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8478B6781F02D68E007EBEF9 /* MapKit.framework */; };
+		8478B67B1F02D7AA007EBEF9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478B67A1F02D7AA007EBEF9 /* MapViewController.swift */; };
 		84B8477D1EFFAF9000423FB9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84B8477B1EFFAF9000423FB9 /* DataModel.xcdatamodeld */; };
 		84B847801EFFB62E00423FB9 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8477E1EFFB62E00423FB9 /* Location+CoreDataClass.swift */; };
 		84B847811EFFB62E00423FB9 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B8477F1EFFB62E00423FB9 /* Location+CoreDataProperties.swift */; };
@@ -37,6 +39,8 @@
 		842112091EEBE6B400623777 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		8421120B1EEC05EA00623777 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		846073121EE48309007EBAC4 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		8478B6781F02D68E007EBEF9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8478B67A1F02D7AA007EBEF9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		84B8477C1EFFAF9000423FB9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		84B8477E1EFFB62E00423FB9 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		84B8477F1EFFB62E00423FB9 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8478B6791F02D68E007EBEF9 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +65,7 @@
 			children = (
 				493C187C1ED2146800F71B60 /* MyLocations */,
 				493C187B1ED2146800F71B60 /* Products */,
+				8478B6771F02D68E007EBEF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +80,7 @@
 		493C187C1ED2146800F71B60 /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				8478B67A1F02D7AA007EBEF9 /* MapViewController.swift */,
 				493C187D1ED2146800F71B60 /* AppDelegate.swift */,
 				493C18861ED2146800F71B60 /* Assets.xcassets */,
 				842112071EEB23D400623777 /* CategoryPickerViewController.swift */,
@@ -92,6 +99,14 @@
 				84B847861F00067700423FB9 /* LocationCell.swift */,
 			);
 			path = MyLocations;
+			sourceTree = "<group>";
+		};
+		8478B6771F02D68E007EBEF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8478B6781F02D68E007EBEF9 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +143,11 @@
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 4NS5L7XDWJ;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -173,6 +193,7 @@
 				8421120A1EEBE6B400623777 /* HudView.swift in Sources */,
 				84B847831EFFEC7B00423FB9 /* LocationsViewController.swift in Sources */,
 				84B847811EFFB62E00423FB9 /* Location+CoreDataProperties.swift in Sources */,
+				8478B67B1F02D7AA007EBEF9 /* MapViewController.swift in Sources */,
 				84B847871F00067700423FB9 /* LocationCell.swift in Sources */,
 				8421120C1EEC05EA00623777 /* Functions.swift in Sources */,
 				493C187E1ED2146800F71B60 /* AppDelegate.swift in Sources */,
