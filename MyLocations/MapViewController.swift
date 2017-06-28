@@ -13,7 +13,23 @@ import CoreData
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
-    var managedObjectContext: NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext! {
+        didSet {
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: OperationQueue.main) { notification in
+                if self.isViewLoaded {
+                    /*
+                     if let dictionary = notification.userInfo {
+                     print(dictionary["inserted"])
+                     print(dictionary["deleted"])
+                     print(dictionary["updated"])
+                     }
+                     */
+                    self.updateLocations()
+                }
+            }
+        }
+    }
+    
     var locations = [Location]()
     
     override func viewDidLoad() {
@@ -86,7 +102,19 @@ class MapViewController: UIViewController {
     }
     
     func showLocationDetails(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "EditLocation", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditLocation" {
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.topViewController as! LocationDetailsViewController
+            controller.managedObjectContext = managedObjectContext
+            
+            let button = sender as! UIButton
+            let location = locations[button.tag]
+            controller.locationToEdit = location
+        }
     }
 }
 
@@ -122,7 +150,10 @@ extension MapViewController: MKMapViewDelegate {
         }
         return annotationView
     }
-    
-    
+}
 
+extension MapViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
 }

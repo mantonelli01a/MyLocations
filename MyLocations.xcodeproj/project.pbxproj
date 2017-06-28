@@ -80,7 +80,6 @@
 		493C187C1ED2146800F71B60 /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
-				8478B67A1F02D7AA007EBEF9 /* MapViewController.swift */,
 				493C187D1ED2146800F71B60 /* AppDelegate.swift */,
 				493C18861ED2146800F71B60 /* Assets.xcassets */,
 				842112071EEB23D400623777 /* CategoryPickerViewController.swift */,
@@ -92,11 +91,12 @@
 				493C18881ED2146800F71B60 /* LaunchScreen.storyboard */,
 				84B8477E1EFFB62E00423FB9 /* Location+CoreDataClass.swift */,
 				84B8477F1EFFB62E00423FB9 /* Location+CoreDataProperties.swift */,
+				84B847861F00067700423FB9 /* LocationCell.swift */,
 				846073121EE48309007EBAC4 /* LocationDetailsViewController.swift */,
 				84B847821EFFEC7B00423FB9 /* LocationsViewController.swift */,
 				493C18831ED2146800F71B60 /* Main.storyboard */,
+				8478B67A1F02D7AA007EBEF9 /* MapViewController.swift */,
 				493C18811ED2146800F71B60 /* SecondViewController.swift */,
-				84B847861F00067700423FB9 /* LocationCell.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
