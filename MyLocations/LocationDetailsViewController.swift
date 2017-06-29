@@ -35,6 +35,12 @@ class LocationDetailsViewController: UITableViewController {
     var image: UIImage?
     
     var managedObjectContext: NSManagedObjectContext!
+    var observer: Any!
+    
+    deinit {
+        print("*** deinit \(self)")
+        NotificationCenter.default.removeObserver(observer)
+    }
     
     var descriptionText = ""
     var locationToEdit: Location? {
@@ -59,6 +65,7 @@ class LocationDetailsViewController: UITableViewController {
         } else {
             hudView.text = "Tagged"
             location = Location(context: managedObjectContext)
+            location.photoID = nil
         }
         
         location.locationDescription = descriptionTextView.text
@@ -67,6 +74,19 @@ class LocationDetailsViewController: UITableViewController {
         location.longitude = coordinate.longitude
         location.date = date
         location.placemark = placemark
+        
+        if let image = image {
+            if !location.hasPhoto {
+                location.photoID = Location.nextPhotoID() as NSNumber
+            }
+            if let data = UIImageJPEGRepresentation(image, 0.5) {
+                do {
+                    try data.write(to: location.photoURL, options: .atomic)
+                } catch {
+                    print("Error writing file: \(error)")
+                }
+            }
+        }
         
         do {
             try managedObjectContext.save()
@@ -89,11 +109,29 @@ class LocationDetailsViewController: UITableViewController {
         categoryLabel.text = categoryName
     }
     
+    func listenForBackgroundNotification() {
+        observer = NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) {
+            [weak self] _ in
+            
+            if let strongSelf = self {
+                if strongSelf.presentedViewController != nil {
+                    strongSelf.dismiss(animated: false, completion: nil)
+                }
+                strongSelf.descriptionTextView.resignFirstResponder()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let location = locationToEdit {
             title = "Edit Location"
+            if location.hasPhoto {
+                if let theImage = location.photoImage {
+                    show(image: theImage)
+                }
+            }
         }
         
         descriptionTextView.text = descriptionText
@@ -111,6 +149,8 @@ class LocationDetailsViewController: UITableViewController {
         let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         gestureRecogniser.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecogniser)
+        
+        listenForBackgroundNotification()
     }
     
     func hideKeyboard(_ gestureRecogniser: UIGestureRecognizer) {
